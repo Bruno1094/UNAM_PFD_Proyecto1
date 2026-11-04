@@ -1,13 +1,13 @@
 """Mercado, descuento e ingresos del subyacente.
 
-Notación de las notas:
+Notación:
     B(t,T)   valor en t de $1 pagado en T  (tasa continua o discreta)
     B_E(t,T) proceso valor de los dividendos del subyacente
     C        valor presente de los ingresos fijos que paga el subyacente
     F        precio forward
 
 Todo el motor trabaja internamente con tasas continuas equivalentes:
-si la convención es discreta, r_c = ln(1 + r).
+si la convención es discreta (r_d), entonces r_c = ln(1 + r_d).
 """
 from __future__ import annotations
 
@@ -31,10 +31,12 @@ class Mercado:
     # ---- tasas -----------------------------------------------------------
     @property
     def rc(self) -> float:
+        """Tasa libre de riesgo"""
         return self.r if self.conv == "continua" else float(np.log1p(self.r))
 
     @property
     def qc(self) -> float:
+        """Tasa de rendimientos del subyacente en caso de dividendos, tasa extranjera, etc."""
         return self.q if self.conv == "continua" else float(np.log1p(self.q))
 
     @property
@@ -58,8 +60,8 @@ class Mercado:
     def vp_ingresos(self, T, t=0.0) -> float:
         """C: valor en t de los pagos en (t, T].
 
-        Con q = 0 el descuento es B(t, t_i), como en las notas. Si además hay
-        rendimiento continuo, se descuenta con e^{-(r-q)(t_i-t)} para que el
+        Con q = 0 el descuento es B(t, t_i). Si además hay rendimiento
+        continuo, se descuenta con e^{-(r-q)(t_i-t)} para que el
         forward siga libre de arbitraje.
         """
         return float(sum(di * np.exp(-self.b * (ti - t))
