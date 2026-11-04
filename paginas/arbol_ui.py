@@ -109,7 +109,7 @@ def definir(titulo=None, forzar=None, inicial=None):
     cont = st.expander(titulo, expanded=False) if titulo else st.container()
     with cont:
         c = st.columns([3, 1])
-        c[0].selectbox("Ejemplo de clase", list(cu.EJEMPLOS), key="w_t_ej")
+        c[0].selectbox("Ejemplo usado", list(cu.EJEMPLOS), key="w_t_ej")
         c[1].button("Cargar ejemplo", on_click=_cargar, width="stretch", key=f"cargar_{titulo}")
         try:
             a = _construir()
@@ -129,7 +129,7 @@ def definir(titulo=None, forzar=None, inicial=None):
 
 
 def dibujar(v, marcar=None, alto=None):
-    """Árbol con número de nodo, S y V. Se dibuja completo, como en clase."""
+    """Árbol con número de nodo, S y V. Se dibuja completo."""
     a = v.a
     N = a.N
     y = np.zeros(2 ** (N + 1))
