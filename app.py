@@ -28,7 +28,7 @@ def restablecer():
 
 
 with st.sidebar:
-    st.header("Mercado")
+    st.header("Datos de Mercado")
     st.caption("Alimenta forwards, Black-Scholes, arbitraje y calculadoras.")
     c1, c2 = st.columns(2)
     S0 = num("Subyacente S₀", "w_S0", 100.0, c1, min_value=0.0001, step=1.0)
@@ -37,7 +37,7 @@ with st.sidebar:
     T = num("Vencimiento T (años)", "w_T", 1.0, c1, min_value=0.0028, step=0.25)
     sigma = num("Volatilidad σ (%)", "w_sigma", 20.0, c2, min_value=0.01, step=1.0, format="%.2f")
     conv = sel("Valor del dinero", "w_conv", ["Tasa continua", "Tasa discreta", "Dar B(0,T)"],
-               help="Continua: B(t,T) = e^{-r(T-t)}. Discreta: B(t,T) = (1+r)^{-(T-t)}. También puedes capturar B(0,T) directamente.")
+               help="Continua: B(t,T) = e^{-r(T-t)}.\nDiscreta: B(t,T) = (1+r)^{-(T-t)}.\nTambién puedes capturar B(0,T) directamente.")
     if conv == "Dar B(0,T)":
         B0 = num("B(0,T)", "w_B0", 0.9512, min_value=0.0001, max_value=2.0, step=0.01, format="%.6f")
         r = -np.log(B0) / T * 100
