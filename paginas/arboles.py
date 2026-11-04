@@ -9,11 +9,11 @@ from paginas.comun import aviso, caja, encabezado, graficar, num, seguro, tabla,
 
 
 def pagina():
-    encabezado("Árbol binomial", "Valuación por réplica: de un periodo a N periodos, con la numeración de nodos y la notación de clase.")
+    encabezado("Árbol binomial", "Valuación por réplica: de un periodo a N periodos, con la numeración de nodos.")
     t1, t2, t3, t4, t5 = st.tabs(["Un periodo", "N periodos", "Réplica en una trayectoria", "Fórmula binomial", "No recombinante"])
 
     with t1:
-        st.caption("Sesión 2. Cualquier derivado es un vector (X_u, X_d).")
+        st.caption("Caso más simple.")
         c = st.columns(3)
         S0 = num("S₀", "w_b_S", 40.0, c[0], min_value=.001)
         Su = num("S_u", "w_b_Su", 42.0, c[1], min_value=.001)
@@ -36,7 +36,7 @@ def pagina():
             if not 0 < r["q"] < 1:
                 aviso("q queda fuera de (0, 1)", "Hay arbitraje entre el subyacente y la cuenta en efectivo. La estrategia está en Arbitraje, sección Árbol.")
             else:
-                st.caption("q no depende del derivado, solo del subyacente y de la cuenta en efectivo. Tampoco interviene la probabilidad real.")
+                st.caption("**q** no depende del derivado, solo del subyacente y de la cuenta en efectivo. Tampoco interviene la probabilidad real.")
 
     with t2:
         d = arbol_ui.definir()
@@ -50,14 +50,14 @@ def pagina():
             st.latex(r"V_n=B(i\delta,(i+1)\delta)[q_nV_u+(1-q_n)V_d],\qquad q_n=\frac{S_nB^{-1}(i\delta,(i+1)\delta)-S_d}{S_u-S_d}")
             if d["a"].N <= 5:
                 graficar(arbol_ui.dibujar(v))
-                st.caption("En cada nodo: número de nodo, S y V. Pasa el cursor para ver q, α y β.")
+                st.caption("En cada nodo: número de nodo, S y V (Posa el cursor sobre los nodos para ver q, α y β).")
             else:
                 st.caption("Con más de 5 periodos el árbol no se dibuja; todos los nodos están en la tabla de abajo.")
             with st.expander("Todos los nodos", expanded=d["a"].N > 5):
                 tabla(arbol_ui.tabla_nodos(v))
 
     with t3:
-        st.caption("Sesión 3. Usa el árbol de la pestaña N periodos. Elige una trayectoria y comprueba que la cobertura se autofinancia y replica el pago.")
+        st.caption("Usando el árbol de la pestaña *N periodos*. Elige una trayectoria y comprueba que la cobertura se autofinancia y replica el pago.")
         if d:
             v = d["v"]
             N = d["a"].N
@@ -79,7 +79,7 @@ def pagina():
                     st.caption("En la americana puede haber consumo: ve la pestaña Americanas.")
 
     with t4:
-        st.caption("Sesión 4. Árbol multiplicativo con B constante y X que depende solo de S(T).")
+        st.caption("Árbol multiplicativo con B constante y X que depende solo de S(T).")
         c = st.columns(5)
         S0 = num("S(0)", "w_f_S", 120.0, c[0], min_value=.001)
         u = num("u", "w_f_u", 1.7, c[1], min_value=.001)
@@ -106,7 +106,7 @@ def pagina():
             caja("Forward X = S(T) - K", fwd, f"debe dar S(0) - B(0,T)K = {S0 - B ** N * K:,.4f}", True, cont=cc[1])
 
     with t5:
-        st.caption("Sesión 4. Del nodo j salen 2j y 2j+1. Sirve cuando ud ≠ du o B cambia con el nodo.")
+        st.caption("Árbol no recombinante. Sirve cuando ud ≠ du o B cambia con el nodo.")
         c = st.columns(3)
         S1 = num("S₁", "w_n_S1", 80.0, c[0], min_value=.001)
         S2 = num("S₂ (abajo)", "w_n_S2", 60.0, c[1], min_value=.001)
