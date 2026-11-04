@@ -29,7 +29,8 @@ def restablecer():
 
 with st.sidebar:
     st.header("Datos de Mercado")
-    st.caption("Alimenta forwards, Black-Scholes, arbitraje y calculadoras.")
+    st.caption("Alimenta las siguientes pestañas:\n"
+               "Forwards, Black-Scholes, Arbitraje y Calculadoras.")
     c1, c2 = st.columns(2)
     S0 = num("Subyacente S₀", "w_S0", 100.0, c1, min_value=0.0001, step=1.0)
     K = num("Strike K", "w_K", 100.0, c2, min_value=0.0001, step=1.0)
@@ -55,9 +56,9 @@ with st.sidebar:
     q, pagos = 0.0, ()
     if ingreso == "Dividendos":
         q = num("Rendimiento q (%)", "w_q", 2.0, min_value=-5.0, step=0.25, format="%.3f") / 100
-        st.caption("Da B_E(t,T): A unidades hoy serán B_E⁻¹(t,T)A unidades en T.")
+        st.caption("Da B_E(t,T):\n"
+                   "A unidades hoy, serán B_E⁻¹(t,T)A unidades en T.")
     elif ingreso == "Ingreso fijo":
-        st.caption("C es el valor presente de estos pagos.")
         tabla = tabla_editable("pagos", pd.DataFrame({"Fecha (años)": [0.25, 0.75], "Monto": [2.0, 2.0]}),
                                num_rows="dynamic", hide_index=True, width="stretch")
         limpio = tabla.dropna()
