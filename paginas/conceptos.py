@@ -5,7 +5,7 @@ from motor import curso as cu
 from paginas.comun import aviso, caja, encabezado, num, tabla
 
 TEMAS = [
-    ("Sesión 1", "Incertidumbre, arbitraje y cobertura", r"""
+    ("Temas base", "Incertidumbre, arbitraje y cobertura", r"""
 **Incertidumbre.** No se conoce el valor particular que tomará un activo, pero sí los valores que puede tomar.
 
 **Subyacente.** Activo cuyo precio presenta incertidumbre.
@@ -24,7 +24,7 @@ TEMAS = [
 
 **Supuestos.** Competencia perfecta, información simétrica y completa, y agentes que pueden tomar cualquiera de las dos posiciones.
 """),
-    ("Sesión 1", "Forwards y opciones", r"""
+    ("Tema 1", "Forwards y opciones", r"""
 **Forward.** Acuerdo para comprar o vender el subyacente a un precio pactado en una fecha futura. La parte larga se obliga a comprar y la corta a vender.
 
 **Payoff.** Valor de una posición cuando se cumplen las condiciones del contrato. Forward largo: $S_T-K$; corto: $K-S_T$. Es un juego de suma cero.
@@ -43,7 +43,7 @@ TEMAS = [
 
 **Paridad put-call.** $c(S_0,T,K)-p(S_0,T,K)=S_0-B(0,T)K$. Un call largo y un put corto igualan un forward largo.
 """),
-    ("Sesión 2", "Modelo binomial de un periodo", r"""
+    ("Tema 2", "Modelo binomial de un periodo", r"""
 **Idea.** Construir de manera sintética el derivado con $\alpha$ unidades de subyacente y $\beta$ en la cuenta en efectivo.
 
 **Cuenta en efectivo.** Activo libre de riesgo. No presenta incertidumbre.
@@ -56,7 +56,7 @@ TEMAS = [
 
 **Precio.** $V_0=B(0,T)E_Q[X]$. No depende de las probabilidades reales ni de la actitud ante el riesgo.
 """),
-    ("Sesiones 3 y 4", "Modelo multiperiodo", r"""
+    ("Temas 3 y 4", "Modelo multiperiodo", r"""
 **Numeración.** $0,1\delta,\dots,N\delta=T$. Del nodo $j$ salen $2j$ y $2j+1$, con $2^N$ nodos finales.
 
 **Recombina.** $S_{ud}=S_{du}$: quedan $N+1$ nodos finales.
@@ -73,7 +73,7 @@ TEMAS = [
 
 **Libre de modelo.** Instrumento que se valúa sin suponer una dinámica para el subyacente, como el forward.
 """),
-    ("Sesión 5", "Filtraciones y martingalas", r"""
+    ("Temas 5", "Filtraciones y martingalas", r"""
 **Espacio de probabilidad.** $(\Omega,F,P)$, donde $P$ es la medida de ocurrencia real.
 
 **Filtración.** Familia creciente de σ-álgebras $F(n)\subset F(n+1)$. Describe cómo se acumula la información.
@@ -90,7 +90,7 @@ TEMAS = [
 
 **Teorema de representación binomial.** Si $Z$ y $Y$ son Q-martingalas, existe $\alpha$ previsible tal que $Y(n\delta)=Y(0)+\sum_{k=1}^n\alpha(k\delta)\Delta Z(k\delta)$.
 """),
-    ("Sesión 6", "Justificación del precio y Radon-Nikodym", r"""
+    ("Tema 6", "Justificación del precio y Radon-Nikodym", r"""
 **Identificación.** $Z(n\delta)=B(0,n\delta)S(n\delta)$ representa al subyacente, $Y(n\delta)=E_Q[B(0,N\delta)X\mid F(n)]$ al derivado y $\alpha$ a la cantidad de subyacente.
 
 **Portafolio.** $\pi(n)$ guarda $\alpha((n+1)\delta)$ títulos y $\beta((n+1)\delta)=Y(n\delta)-\alpha((n+1)\delta)Z(n\delta)$.
@@ -105,7 +105,7 @@ TEMAS = [
 
 **Proceso de Radon-Nikodym.** $\zeta(j\delta)=E_P[dQ/dP\mid F(j)]$, la cantidad de cambio de medida hasta $j\delta$.
 """),
-    ("Sesión 7", "Límite y Black-Scholes", r"""
+    ("Tema 7", "Límite y Black-Scholes", r"""
 **Tasa equivalente.** $r(j\delta)\delta=\ln S((j+1)\delta)-\ln S(j\delta)$.
 
 **Árbol.** Retornos con media $\mu\delta$ y varianza $\sigma^2\delta$: $u=e^{\mu\delta+\sigma\sqrt\delta}$ y $d=e^{\mu\delta-\sigma\sqrt\delta}$.
@@ -116,7 +116,7 @@ TEMAS = [
 
 **Elección del curso.** $\mu=r-\frac12\sigma^2$.
 """),
-    ("Sesión 8", "Opciones americanas", r"""
+    ("Tema 8", "Opciones americanas", r"""
 **Notación.** $X(n\delta)$ es el valor intrínseco y $V(n\delta)$ el valor del derivado. Debe cumplirse $V(k\delta)\ge X(S(k\delta))$.
 
 **Ejercicio óptimo.** Ejercer al llegar a un nodo donde $h_k$ coincide con el valor intrínseco.
@@ -129,23 +129,12 @@ TEMAS = [
 
 **Muestreo opcional.** Si $Z$ es martingala y $\tau\le\rho$ están acotados, $Z(\tau)=E[Z(\rho)\mid F(\tau)]$.
 """),
-    ("Apuntes", "Otros términos de clase", r"""
-**Apostadores y tomadores.** Los primeros entregan dinero al inicio; los segundos lo reciben.
-
-**Price taker.** Participante que no puede mover el precio.
-
-**Step-in y unwind.** Tomar una posición y salir de ella.
-
-**Exóticos vistos.** Digital, lookback ($X=\max\{S(0),\dots,S(N\delta)\}$), asiática y doble sin toque ($X=100\cdot\mathbb 1\{B_1<S(t)<B_2\}$).
-
-**Bibliografía.** Baxter y Rennie.
-"""),
 ]
 
 
 def pagina():
-    encabezado("Conceptos", "Las ideas de clase, en el orden de las sesiones.")
-    t1, t2 = st.tabs(["Definiciones", "Carrera de caballos"])
+    encabezado("Conceptos", "Las ideas usadas en esta pagina.")
+    t1 = st.tabs(["Definiciones", ])
     with t1:
         buscar = st.text_input("Buscar un concepto", key="c_buscar", placeholder="Por ejemplo: martingala").strip().lower()
         vistos = 0
@@ -157,22 +146,3 @@ def pagina():
                     st.markdown("\n\n".join(bloques))
         if not vistos:
             st.caption("Sin resultados. Prueba con otra palabra.")
-
-    with t2:
-        st.caption("Sesión 1. Muestra por qué la esperanza no da el precio: la cobertura sí.")
-        c = st.columns(4)
-        p = num("Probabilidad de que gane A", "w_c_pA", .70, c[0], min_value=0.0, max_value=1.0, step=.05)
-        pc = num("La carrera paga, por peso", "w_c_pc", 2.0, c[1], min_value=.01, step=.5)
-        pb = num("El boleto paga si gana A", "w_c_pb", 100.0, c[2], min_value=0.0, step=10.0)
-        pr = num("Precio del boleto", "w_c_pr", 60.0, c[3], min_value=0.0, step=5.0)
-        r = cu.carrera(p, pc, pb, pr)
-        c = st.columns(3)
-        caja("Precio sostenible", r["sostenible"], "el costo de la cobertura", cont=c[0])
-        caja("Pago esperado del boleto", r["esperado"], "ley de los grandes números", True, cont=c[1])
-        caja("Ganancia media por boleto", r["ganancia_media"], "al comprarlo a ese precio, solo en promedio", True, cont=c[2])
-        if r["piernas"]:
-            aviso("Hay arbitraje", f"Con esta estrategia te quedas con {r['ganancia']:,.2f} sin importar quién gane.")
-            tabla(pd.DataFrame(r["piernas"]), 2)
-        else:
-            aviso("El precio es sostenible", "No existe una estrategia para ganar siempre.", "neutro")
-        st.caption("El precio sostenible no usa la probabilidad de que gane A. Cambia ese dato y compruébalo.")
