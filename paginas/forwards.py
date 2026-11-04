@@ -9,7 +9,7 @@ from paginas.comun import K_T, caja, encabezado, figura, graficar, lineas, marca
 def pagina():
     m = mercado()
     K, T = K_T()
-    encabezado("Forwards y paridad put-call", "Sesión 1: instrumentos que se valúan con dos portafolios y no arbitraje, sin suponer ningún modelo.")
+    encabezado("Forwards y paridad put-call", "Valúa instrumentos comparando dos portafolios con el mismo pago final, sin necesidad de suponer un modelo para el activo.")
     t1, t2, t3, t4 = st.tabs(["Precio y valor", "Comparar ingresos", "Payoffs", "Paridad put-call"])
 
     with t1:

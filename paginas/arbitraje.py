@@ -37,7 +37,7 @@ def _cadena_ejemplo(m, K, T):
 def pagina():
     m = mercado()
     K, T = K_T()
-    encabezado("Arbitraje", "Si dos cosas valen lo mismo en T en todo escenario, deben valer lo mismo hoy. Captura precios de mercado y, si no se cumple, aquí tienes la estrategia.")
+    encabezado("Arbitraje", "Detecta oportunidades de ganancia sin riesgo cuando dos instrumentos con el mismo pago final tienen precios distintos hoy.")
     t1, t2, t3, t4, t5 = st.tabs(["Paridad put-call", "Forward", "Teórico contra mercado", "Árbol", "Cadena de strikes"])
 
     with t1:
@@ -91,7 +91,7 @@ def pagina():
             mostrar_estrategia(ar.contra_modelo(m, K, T, tipo, pm, teo, delta))
 
     with t4:
-        st.caption("En el árbol el mercado es completo: cualquier precio distinto al de la cobertura es arbitraje puro.")
+        st.caption("En el árbol, cualquier precio distinto al de la cobertura permite ganar sin riesgo.")
         tipo_arb = radio("Árbol", "w_ab_tipo", ["Un periodo", "Varios periodos"])
         if tipo_arb == "Un periodo":
             c = st.columns(3)
@@ -142,7 +142,7 @@ def pagina():
             return
         hall = ar.cadena(m, T, df["K"].to_numpy(float), df["Call"].to_numpy(float), df["Put"].to_numpy(float), minimo)
         if not hall:
-            aviso("No encontré arbitraje", "La cadena cumple todas las revisiones.", "neutro")
+            aviso("No se encontró arbitraje", "Si las revisiones de precios se cumplen, no hay oportunidades de arbitraje que aprovechar.", "neutro")
         else:
             aviso(f"Encontré {len(hall)} señales de arbitraje", "Están ordenadas por ganancia. Un solo precio malo suele aparecer en varias revisiones.")
             for i, e in enumerate(hall[:12]):

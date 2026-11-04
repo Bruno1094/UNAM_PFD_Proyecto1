@@ -7,7 +7,7 @@ from paginas.comun import aviso, caja, encabezado, graficar, tabla
 
 
 def pagina():
-    encabezado("Opciones americanas", "Sesión 8: en cada nodo se elige lo que vale más entre ejercer y dejar vivir la opción.")
+    encabezado("Opciones americanas", "Valúa opciones que pueden ejercerse en cualquier momento, comparando en cada nodo el valor de ejercerlas con el de conservarlas.")
     st.caption("X(nδ) es el valor intrínseco y V(nδ) el valor del derivado.")
     d = arbol_ui.definir("Árbol en uso", forzar="americana", inicial="Sesión 8: put americano K = 5")
     if not d:
