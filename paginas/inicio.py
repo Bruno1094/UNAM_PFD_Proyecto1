@@ -8,7 +8,7 @@ def pagina():
     m = mercado()
     K, T = K_T()
     encabezado("Derivados en tiempo discreto",
-               "Calculadora basada en las notas del curso. Los datos de la izquierda alimentan forwards, Black-Scholes y arbitraje; "
+               "Calculadora de derivados. Los datos de la izquierda alimentan forwards, Black-Scholes y arbitraje; "
                "los árboles tienen sus propios datos y ejemplos de clase.")
     c = st.columns(4)
     caja("Precio forward F", float(m.forward(T)), cont=c[0])
@@ -16,10 +16,9 @@ def pagina():
     caja("Put europeo", float(europea(m, K, T, "put")), cont=c[2])
     caja("B(0,T)", float(m.B(T)), secundaria=True, cont=c[3])
 
-    st.header("Recorrido del curso")
+    st.header("Conceptos por utilizar")
     izq, der = st.columns(2)
     izq.markdown("""
-**Conceptos.** Definiciones por sesión y la carrera de caballos.
 
 **Forwards.** Valor, precio y paridad put-call, con dividendos e ingreso fijo.
 
