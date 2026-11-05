@@ -9,7 +9,7 @@ from paginas.comun import (K_T, aviso, caja, casilla, encabezado, graficar, figu
                            sel, seguro, txt)
 
 CATALOGO = {
-    "Vistos en clase": ["Digital en efectivo", "Digital en activo", "Doble sin toque (banda)", "Lookback del máximo",
+    "Exoticos conocidos": ["Digital en efectivo", "Digital en activo", "Doble sin toque (banda)", "Lookback del máximo",
                         "Asiática aritmética"],
     "Otros de pago especial": ["Gap", "Supershare", "Potencia"],
     "Otras barreras": ["Barrera con rebate", "Doble barrera", "Un toque", "Sin toque", "Acumulador de rango"],
