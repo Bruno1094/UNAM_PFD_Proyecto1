@@ -9,7 +9,7 @@ from paginas.comun import (K_T, aviso, caja, casilla, encabezado, graficar, figu
                            sel, seguro, txt)
 
 CATALOGO = {
-    "Exoticos conocidos": ["Digital en efectivo", "Digital en activo", "Doble sin toque (banda)", "Lookback del máximo",
+    "Exóticos conocidos": ["Digital en efectivo", "Digital en activo", "Doble sin toque (banda)", "Lookback del máximo",
                         "Asiática aritmética"],
     "Otros de pago especial": ["Gap", "Supershare", "Potencia"],
     "Otras barreras": ["Barrera con rebate", "Doble barrera", "Un toque", "Sin toque", "Acumulador de rango"],
@@ -226,7 +226,7 @@ def _mc(_c, firma, m, T, pasos, n):
 def pagina():
     m = mercado()
     K, T = K_T()
-    encabezado("Exóticos", "Primero están los que vimos en clase. Cada contrato muestra su pago, su valor y una comprobación por simulación.")
+    encabezado("Exóticos", "Empezando con los conocidos. Cada contrato muestra su pago, su valor y una comprobación por simulación.")
     c = st.columns(2)
     fam = sel("Familia", "w_ex_fam", list(CATALOGO), cont=c[0])
     nombre = sel("Contrato", f"w_ex_nom_{list(CATALOGO).index(fam)}", CATALOGO[fam], cont=c[1])
