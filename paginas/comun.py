@@ -186,9 +186,13 @@ def seguro(fn, *a, **k):
     return None
 
 
+TOLERANCIA = 0.0005   # diferencias menores se consideran redondeo de los precios
 def mostrar_estrategia(e):
     if not e.existe:
         aviso(e.titulo, e.nota, "neutro")
+        return
+    if abs(e.ganancia_hoy) < TOLERANCIA and abs(e.ganancia_T) < TOLERANCIA:
+        aviso("No hay arbitraje", f"La diferencia es de {e.ganancia_hoy:.6f}, menor que el redondeo de los precios.", "neutro")
         return
     if e.tipo == "pura":
         aviso("Hay oportunidad de arbitraje", e.titulo)
