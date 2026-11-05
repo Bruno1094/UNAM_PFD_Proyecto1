@@ -73,7 +73,6 @@ st.session_state["K"], st.session_state["T"] = K, T
 
 paginas = {
     "": [st.Page(inicio.pagina, title="Inicio", url_path="inicio", default=True),
-         st.Page(conceptos.pagina, title="Conceptos", url_path="conceptos"),
          st.Page(forwards.pagina, title="Forwards", url_path="forwards"),
          st.Page(arboles.pagina, title="Árboles", url_path="arboles"),
          st.Page(martingalas.pagina, title="Martingalas", url_path="martingalas"),
