@@ -1,4 +1,4 @@
-"""Derivados exóticos con fórmula cerrada o integral de una dimensión.
+"""Derivados exóticos.
 
 Todas las funciones reciben Mercado. Las fórmulas de barrera, lookback y las demás
 dependientes de la trayectoria suponen monitoreo continuo y sin pagos discretos.
@@ -225,7 +225,7 @@ def _b_seguro(b):
 
 
 def lookback_flotante(m: Mercado, T, tipo="call", extremo=None):
-    """Call: S_T - mín; put: máx - S_T (Goldman-Sosin-Gatto)."""
+    """Call: S_T - mín; put: máx - S_T."""
     S, r, q, b0, s = _datos(m, T)
     b = _b_seguro(b0)
     E = S if extremo is None else extremo
@@ -243,7 +243,7 @@ def lookback_flotante(m: Mercado, T, tipo="call", extremo=None):
 
 
 def lookback_fijo(m: Mercado, K, T, tipo="call", extremo=None):
-    """Call: máx - K; put: K - mín (Conze-Viswanathan)."""
+    """Call: máx - K; put: K - mín."""
     S, r, q, b0, s = _datos(m, T)
     b = _b_seguro(b0)
     E = S if extremo is None else extremo
@@ -289,10 +289,7 @@ def selectora(m: Mercado, K, t_elige, T):
 
 
 def compuesta(m: Mercado, K_ext, t1, K_int, T2, ext="call", inter="call"):
-    """Opción `ext` con vencimiento t1 y strike K_ext sobre una opción `inter`.
-
-    Es la integral de Geske evaluada numéricamente sobre S(t1).
-    """
+    """Opción `ext` con vencimiento t1 y strike K_ext sobre una opción `inter`."""
     S, r, q, b, s = _datos(m, T2)
     tau = T2 - t1
 
