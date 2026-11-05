@@ -31,9 +31,9 @@ def pagina():
     der.markdown("""
 **Americanas.** Ejercicio óptimo, consumo, tiempos de paro y muestreo opcional.
 
-**Arbitraje.** Paridad, forward, teórico contra mercado, árbol y cadena de strikes, con la estrategia completa.
+**Arbitraje.** Paridad put-call, forwards, precio teórico contra mercado y árboles, con la estrategia completa de arbitraje.
 
 **Calculadoras.** Opciones, exóticos y un constructor de contratos a la medida.
 
-**Complementos.** Griegas. Estrategias y riesgo: Arma tu portafolio.
+**Complementos.** Estrategias y riesgo (Arma tu portafolio); y cadenas de strikes con estrategias de arbitraje.
 """)
