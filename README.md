@@ -29,10 +29,9 @@ El precio de un derivado es el costo de su cobertura (estrategia que lo replica)
 
 ## Métodos
 
-- **Árboles binomiales:** valuación hacia atrás, incluidos pagos que dependen de la trayectoria.
+- **Árboles binomiales:** valuación backwards, incluidos pagos que dependen de la trayectoria.
 - **Fórmulas cerradas e integración numérica:** Black-Scholes y exóticos que las admiten.
-- **Monte Carlo:** exóticos y contratos a la medida, con semilla fija para repetir resultados.
-- **Longstaff-Schwartz:** ejercicio anticipado en el constructor. Da una cota inferior del precio.
+- **Monte Carlo:** derivados exóticos y contratos a la medida, con semilla fija para repetir resultados.
 
 Los resultados dependen de los supuestos del modelo, como la volatilidad constante. Esta aplicación es una herramienta de cálculo y estudio, no una recomendación de inversión.
 
