@@ -10,10 +10,10 @@ def pagina():
     encabezado("Derivados en tiempo discreto",
                "Calculadora de derivados. Los datos de la izquierda alimentan forwards, Black-Scholes y arbitraje; "
                "los árboles tienen sus propios datos y ejemplos de clase.\n\n"
-               "Realizado por:\n"
-               "Hernández Alcántara Cristina Geraldine      Mendoza Aragón Rogelio"
-               "Moreno Ventura Miguel Angel                 Olavarria Guerra Bruno"
-               "Reyes Díaz Axel Gabriel")
+               "Realizado por:\n\n"
+               "Hernández Alcántara Cristina Geraldine\t     Mendoza Aragón Rogelio\n\n"
+               "Moreno Ventura Miguel Angel\t\t              Olavarria Guerra Bruno\n\n"
+               "Reyes Díaz Axel Gabriel\t\t                  Salgado Bahena Arturo\n\n")
     c = st.columns(4)
     caja("Precio forward F", float(m.forward(T)), cont=c[0])
     caja("Call europeo", float(europea(m, K, T, "call")), cont=c[1])
