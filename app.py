@@ -6,7 +6,7 @@ from streamlit import config as _config
 
 from motor.base import Mercado
 from paginas import (americanas, arboles, arbitraje, black_scholes, conceptos, constructor, estrategias, exoticos, forwards,
-                     griegas, inicio, martingalas, opciones, cadenas)
+                     griegas, inicio, martingalas, opciones, cadenas, creditos)
 from paginas.comun import CSS, asentar_tablas, num, sel, tabla_editable
 
 # La paleta solo está pensada para fondo claro, aunque se pierda la carpeta .streamlit al subir el proyecto.
@@ -84,6 +84,7 @@ paginas = {
                      st.Page(constructor.pagina, title="Constructor", url_path="constructor")],
     "Complementos": [st.Page(cadenas.pagina, title="Cadenas de Strikes", url_path="cadenas"),
                      st.Page(estrategias.pagina, title="Estrategias y riesgo", url_path="estrategias")],
+    "": [st.Page(creditos.pagina, title="Creditos", url_path="creditos")]
 }
 actual = st.navigation(paginas, position="top")
 if st.session_state.get("_pagina") != actual.url_path:
