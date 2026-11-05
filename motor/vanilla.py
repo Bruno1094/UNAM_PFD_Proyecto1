@@ -18,7 +18,7 @@ def d1d2(P, KB, sigma, T):
 
 
 def black(P, KB, sigma, T, tipo="call"):
-    """c = P·N(d1) - K·B·N(d2).  Con P = S0 y B = e^{-rT} es la fórmula de las notas."""
+    """c = P·N(d1) - K·B·N(d2).  Con P = S0 y B = e^{-rT}."""
     P = np.asarray(P, dtype=float)
     KB = np.asarray(KB, dtype=float)
     if T <= 0 or sigma <= 0:
@@ -56,7 +56,7 @@ def bernoulli(S0, Su, Sd, Xu, Xd, B) -> dict:
 
 
 def no_recombinante(S, B, X) -> dict:
-    """Árbol de 2 pasos no recombinante, con la numeración de la sesión 4.
+    """Árbol de 2 pasos no recombinante.
 
     S = (S1, S2, S3, S4, S5, S6, S7)
     B = (B(0,1δ), B(1δ,2δ) en el nodo 2, B(1δ,2δ) en el nodo 3)
@@ -230,7 +230,7 @@ def enumerar_trayectorias(m: Mercado, T, pasos, metodo="crr", mu=None, u=None, d
 # Griegas por diferencias centrales (sirven para cualquier valuador)
 # ---------------------------------------------------------------------------
 def griegas(valuar, m: Mercado, T, h_S=None) -> dict:
-    """`valuar(m, T)` regresa un precio. Se usan diferencias centrales."""
+    """valuar(m, T) regresa un precio. Se usan diferencias centrales."""
     h = h_S or 0.01 * float(m.S0)
     v = valuar(m, T)
     vu, vd = valuar(m.con(S0=m.S0 + h), T), valuar(m.con(S0=m.S0 - h), T)
