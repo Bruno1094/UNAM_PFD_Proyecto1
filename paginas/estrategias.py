@@ -59,7 +59,7 @@ def pago_final(pos, S):
 def pagina():
     m = mercado()
     K, T = K_T()
-    encabezado("Estrategias y riesgo", "Complemento: no viene en las sesiones. Arma una cartera de opciones, forwards y títulos, y mide escenarios y VaR.")
+    encabezado("Estrategias y riesgo", "Arma una cartera de opciones, forwards y títulos, y mide escenarios y VaR.")
     c = st.columns([2, 1])
     plantillas = _plantillas(K, T)
     p = c[0].selectbox("Plantilla", list(plantillas), index=1, key="e_pl")
