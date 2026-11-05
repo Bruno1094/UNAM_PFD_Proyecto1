@@ -195,7 +195,6 @@ def pagina():
     else:
         pasos = num("Pasos N", "w_c_pa_t", 10, c[1], min_value=1, max_value=16)
         n = 0
-    griega = casilla("Calcular griegas", "w_c_gr", cont=c[3], help="Tarda unas diez veces más.")
 
     err = _validar(con, T)
     if err:
