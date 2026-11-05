@@ -57,7 +57,7 @@ def _construir():
                 mu = num("Retorno esperado μ", "w_t_mu", .10, step=.01)
                 u, d, Bv = cu.parametros("propia", r, sig, T / N, mu)
             else:
-                u, d, Bv = cu.parametros("curso", r, sig, T / N)
+                u, d, Bv = cu.parametros("sigma_r", r, sig, T / N)
             st.latex(rf"\delta=\tfrac TN={T / N:.4f},\quad u=e^{{\mu\delta+\sigma\sqrt\delta}}={u:.6f},\quad d=e^{{\mu\delta-\sigma\sqrt\delta}}={d:.6f},\quad B(\,,\,)=e^{{-r\delta}}={Bv:.6f}")
             B = [Bv]
         return cu.multiplicativo(S0, u, d, N, B)

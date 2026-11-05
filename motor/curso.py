@@ -1,6 +1,6 @@
-"""Árbol binomial del curso, con la notación de las sesiones 2 a 8.
+"""Árbol binomial.
 
-Numeración de nodos: el nodo inicial es 1 y del nodo j salen 2j (abajo) y 2j+1 (arriba).
+Notación en la numeración de nodos: el nodo inicial es 1 y del nodo j salen 2j (abajo) y 2j+1 (arriba).
 Una trayectoria se escribe ω = 0uud. El árbol se guarda siempre completo, así que un
 payoff puede depender de la trayectoria (lookback, asiática, sin toque, etc.).
 """
@@ -75,7 +75,7 @@ def multiplicativo(S0, u, d, N, B) -> Arbol:
 
 
 def por_fechas(tabla, B) -> Arbol:
-    """Recombinante: tabla[k] tiene k+1 precios, de abajo hacia arriba."""
+    """Recombinante"""
     N = len(tabla) - 1
     for k, fila in enumerate(tabla):
         if len(fila) != k + 1:
@@ -89,7 +89,7 @@ def por_fechas(tabla, B) -> Arbol:
 
 
 def por_nodos(precios, B) -> Arbol:
-    """General: S1, S2, S3, ... en el orden de la numeración de clase."""
+    """General: S1, S2, S3, ...."""
     M = len(precios)
     N = int(np.log2(M + 1)) - 1
     if 2 ** (N + 1) - 1 != M or N < 1:
@@ -100,8 +100,8 @@ def por_nodos(precios, B) -> Arbol:
 
 
 def parametros(metodo, r, sigma, delta, mu=None):
-    """Elección de u y d de la sesión 7. En el curso se usa μ = r - σ²/2."""
-    m = r - 0.5 * sigma ** 2 if metodo == "curso" else mu
+    """ Nota: se usa μ = r - σ²/2."""
+    m = r - 0.5 * sigma ** 2 if metodo == "sigma_r" else mu
     raiz = sigma * np.sqrt(delta)
     return float(np.exp(m * delta + raiz)), float(np.exp(m * delta - raiz)), float(np.exp(-r * delta))
 
@@ -304,7 +304,7 @@ def radon_nikodym(v: Valuacion, p) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Tiempos de paro (sesión 8)
+# Tiempos de paro.
 # ---------------------------------------------------------------------------
 def todas_trayectorias(N):
     return ["".join("u" if c == "1" else "d" for c in format(i, f"0{N}b")) for i in range(2 ** N)]
@@ -371,7 +371,7 @@ def muestreo_opcional(v: Valuacion, tau: dict) -> list:
 
 
 # ---------------------------------------------------------------------------
-# Carrera de caballos (sesión 1)
+# Carrera de caballos.
 # ---------------------------------------------------------------------------
 def carrera(p_A, pago_carrera, pago_boleto, precio_boleto) -> dict:
     """La carrera paga `pago_carrera` por peso si gana A. El boleto paga `pago_boleto` si gana A."""
@@ -391,7 +391,7 @@ def carrera(p_A, pago_carrera, pago_boleto, precio_boleto) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Fórmula (5) de la sesión 7
+# Fórmula de Black-Scholes-Merton
 # ---------------------------------------------------------------------------
 def valuar_lognormal(S0, r, sigma, T, expresion, **constantes) -> float:
     """X(0) = e^{-rT} E[X(S(0)e^Y)], Y ~ N((r - σ²/2)T, σ²T), por cuadratura."""
@@ -403,22 +403,22 @@ def valuar_lognormal(S0, r, sigma, T, expresion, **constantes) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Ejemplos de clase
+# Ejemplos
 # ---------------------------------------------------------------------------
 EJEMPLOS = {
-    "Sesión 3: ejemplo con call K = 100": dict(modo="fechas", tabla="100\n80, 120\n60, 100, 140\n40, 80, 120, 160", B="1", pago="Call", K=100.0, estilo="Europea", w="uud"),
-    "Sesión 3, ejercicio 2: digital": dict(modo="fechas", tabla="100\n80, 120\n60, 100, 140\n40, 80, 120, 160", B="1", pago="Fórmula propia", expr="100*(S>S0)", K=100.0, estilo="Europea", w="uud"),
-    "Sesión 3, ejercicio 3: call K = 60": dict(modo="fechas", tabla="60\n50, 70\n40, 60, 80", B="1", pago="Call", K=60.0, estilo="Europea", w="ud"),
-    "Sesión 4, ejercicio 2: call K = 115": dict(modo="mult", param="Dar u y d", S0=120.0, u=1.7, d=0.8, N=3, B=f"{np.exp(-0.06):.10f}", pago="Call", K=115.0, estilo="Europea", w="uud"),
-    "Sesión 5: árbol de la martingala": dict(modo="nodos", precios="80, 60, 120, 36, 72, 80, 180", B="1", pago="Fórmula propia", expr="S", K=0.0, estilo="Europea", w="ud"),
-    "Sesión 7, ejercicio 13: put K = 45": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=50.0, sigma=.20, r=.056, T=1.0, N=2, pago="Put", K=45.0, estilo="Europea", w="ud"),
-    "Sesión 7, ejercicio 14: call K = 100": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=100.0, sigma=.30, r=.06, T=1.0, N=2, pago="Call", K=100.0, estilo="Europea", w="ud"),
-    "Sesión 7, ejercicio 15: put con strike que se ajusta (2 periodos)": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=40.0, sigma=.35, r=.05, T=1.0, N=2, pago="Fórmula propia", expr="max(si(Sm<35,35,40)-S,0)", K=40.0, estilo="Europea", w="ud"),
-    "Sesión 7, ejercicio 15: put con strike que se ajusta (4 periodos)": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=40.0, sigma=.35, r=.05, T=1.0, N=4, pago="Fórmula propia", expr="max(si(Sm<35,35,40)-S,0)", K=40.0, estilo="Europea", w="udud"),
-    "Sesión 8: put americano K = 5": dict(modo="mult", param="Dar u y d", S0=4.0, u=2.0, d=0.5, N=2, B="0.8", pago="Put", K=5.0, estilo="Americana", w="du"),
-    "Sesión 8, ejercicio 1: put K = 3": dict(modo="mult", param="Dar u y d", S0=4.0, u=3.0, d=0.5, N=2, B="0.5", pago="Put", K=3.0, estilo="Americana", w="ud"),
-    "Sesión 8, ejercicio 2: put americano K = 60": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=60.0, sigma=.35, r=.06, T=1.0, N=2, pago="Put", K=60.0, estilo="Americana", w="ud"),
-    "Sesión 8, ejercicio 3: call asiática": dict(modo="mult", param="Dar u y d", S0=4.0, u=2.0, d=0.5, N=3, B="0.8", pago="Asiática call", K=4.0, estilo="Europea", w="udu"),
-    "Clase: lookback del máximo, 5 meses": dict(modo="mult", param="Dar u y d", S0=100.0, u=1.2, d=0.9, N=5, B=f"{np.exp(-0.05 / 12):.10f}", pago="Lookback: máximo", K=0.0, estilo="Europea", w="ududu"),
-    "Clase: doble sin toque, 2 años": dict(modo="mult", param="Dar u y d", S0=100.0, u=1.4, d=0.7, N=4, B=f"{np.exp(-0.02):.10f}", pago="Doble sin toque", K=0.0, B1=50.0, B2=250.0, monto=100.0, estilo="Europea", w="udud"),
+    "Call con K = 100": dict(modo="fechas", tabla="100\n80, 120\n60, 100, 140\n40, 80, 120, 160", B="1", pago="Call", K=100.0, estilo="Europea", w="uud"),
+    "Digital": dict(modo="fechas", tabla="100\n80, 120\n60, 100, 140\n40, 80, 120, 160", B="1", pago="Fórmula propia", expr="100*(S>S0)", K=100.0, estilo="Europea", w="uud"),
+    "Call con K = 60": dict(modo="fechas", tabla="60\n50, 70\n40, 60, 80", B="1", pago="Call", K=60.0, estilo="Europea", w="ud"),
+    "Call con K = 115": dict(modo="mult", param="Dar u y d", S0=120.0, u=1.7, d=0.8, N=3, B=f"{np.exp(-0.06):.10f}", pago="Call", K=115.0, estilo="Europea", w="uud"),
+    "Árbol de la martingala": dict(modo="nodos", precios="80, 60, 120, 36, 72, 80, 180", B="1", pago="Fórmula propia", expr="S", K=0.0, estilo="Europea", w="ud"),
+    "Put con K = 45": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=50.0, sigma=.20, r=.056, T=1.0, N=2, pago="Put", K=45.0, estilo="Europea", w="ud"),
+    "Call con K = 100": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=100.0, sigma=.30, r=.06, T=1.0, N=2, pago="Call", K=100.0, estilo="Europea", w="ud"),
+    "Put con strike que se ajusta (2 periodos)": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=40.0, sigma=.35, r=.05, T=1.0, N=2, pago="Fórmula propia", expr="max(si(Sm<35,35,40)-S,0)", K=40.0, estilo="Europea", w="ud"),
+    "Put con strike que se ajusta (4 periodos)": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=40.0, sigma=.35, r=.05, T=1.0, N=4, pago="Fórmula propia", expr="max(si(Sm<35,35,40)-S,0)", K=40.0, estilo="Europea", w="udud"),
+    "Put americano con K = 5": dict(modo="mult", param="Dar u y d", S0=4.0, u=2.0, d=0.5, N=2, B="0.8", pago="Put", K=5.0, estilo="Americana", w="du"),
+    "Put con K = 3": dict(modo="mult", param="Dar u y d", S0=4.0, u=3.0, d=0.5, N=2, B="0.5", pago="Put", K=3.0, estilo="Americana", w="ud"),
+    "Put americano con K = 60": dict(modo="mult", param="Con σ y r (μ = r - ½σ²)", S0=60.0, sigma=.35, r=.06, T=1.0, N=2, pago="Put", K=60.0, estilo="Americana", w="ud"),
+    "Call asiática": dict(modo="mult", param="Dar u y d", S0=4.0, u=2.0, d=0.5, N=3, B="0.8", pago="Asiática call", K=4.0, estilo="Europea", w="udu"),
+    "Lookback del máximo (5 meses)": dict(modo="mult", param="Dar u y d", S0=100.0, u=1.2, d=0.9, N=5, B=f"{np.exp(-0.05 / 12):.10f}", pago="Lookback: máximo", K=0.0, estilo="Europea", w="ududu"),
+    "Double no touch (2 años)": dict(modo="mult", param="Dar u y d", S0=100.0, u=1.4, d=0.7, N=4, B=f"{np.exp(-0.02):.10f}", pago="Doble sin toque", K=0.0, B1=50.0, B2=250.0, monto=100.0, estilo="Europea", w="udud"),
 }
