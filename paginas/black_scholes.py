@@ -14,7 +14,7 @@ PAGOS = {"S(T)ⁿ": ("S^n", True), "Call cuadrada": ("max(S-K,0)^2", False), "Pu
 def pagina():
     m = mercado()
     K, T = K_T()
-    encabezado("Límite y Black-Scholes", "Sesión 7: al hacer δ pequeña, el árbol multiplicativo lleva a la dinámica lognormal y a Black-Scholes.")
+    encabezado("Límite y Black-Scholes", "La δ cuando se aproxima a 0, el árbol multiplicativo lleva a la dinámica lognormal y a Black-Scholes.")
     t1, t2, t3 = st.tabs(["Límite del árbol", "Black-Scholes", "Otros pagos X(S(T))"])
 
     with t1:
