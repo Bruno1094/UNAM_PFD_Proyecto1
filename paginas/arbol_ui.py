@@ -57,7 +57,7 @@ def _construir():
                 mu = num("Retorno esperado μ", "w_t_mu", .10, step=.01)
                 u, d, Bv = cu.parametros("propia", r, sig, T / N, mu)
             else:
-                u, d, Bv = cu.parametros("curso", r, sig, T / N)
+                u, d, Bv = cu.parametros("sigma_r", r, sig, T / N)
             st.latex(rf"\delta=\tfrac TN={T / N:.4f},\quad u=e^{{\mu\delta+\sigma\sqrt\delta}}={u:.6f},\quad d=e^{{\mu\delta-\sigma\sqrt\delta}}={d:.6f},\quad B(\,,\,)=e^{{-r\delta}}={Bv:.6f}")
             B = [Bv]
         return cu.multiplicativo(S0, u, d, N, B)
@@ -109,7 +109,7 @@ def definir(titulo=None, forzar=None, inicial=None):
     cont = st.expander(titulo, expanded=False) if titulo else st.container()
     with cont:
         c = st.columns([3, 1])
-        c[0].selectbox("Ejemplo de clase", list(cu.EJEMPLOS), key="w_t_ej")
+        c[0].selectbox("Ejemplo usado", list(cu.EJEMPLOS), key="w_t_ej")
         c[1].button("Cargar ejemplo", on_click=_cargar, width="stretch", key=f"cargar_{titulo}")
         try:
             a = _construir()
@@ -129,7 +129,7 @@ def definir(titulo=None, forzar=None, inicial=None):
 
 
 def dibujar(v, marcar=None, alto=None):
-    """Árbol con número de nodo, S y V. Se dibuja completo, como en clase."""
+    """Árbol con número de nodo, S y V. Se dibuja completo."""
     a = v.a
     N = a.N
     y = np.zeros(2 ** (N + 1))

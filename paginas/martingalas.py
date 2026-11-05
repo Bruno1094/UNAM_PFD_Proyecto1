@@ -8,8 +8,8 @@ from paginas.comun import aviso, caja, encabezado, lista_num, tabla, txt
 
 
 def pagina():
-    encabezado("Martingalas y cambio de medida", "Sesiones 5 y 6: por qué el precio de la cobertura es una esperanza bajo Q.")
-    d = arbol_ui.definir("Árbol en uso", forzar="europea", inicial="Sesión 5: árbol de la martingala")
+    encabezado("Martingalas y cambio de medida", "Por qué el precio de la cobertura es una esperanza bajo Q.")
+    d = arbol_ui.definir("Árbol en uso", forzar="europea", inicial="Árbol de la martingala")
     if not d:
         return
     a, v = d["a"], d["v"]
