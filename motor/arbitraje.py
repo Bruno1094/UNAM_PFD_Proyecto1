@@ -141,7 +141,8 @@ def forward_mercado(m: Mercado, T, F_bid, F_ask, s_bid=None, s_ask=None, comisio
         if comision:
             pp.append(_p("Comisiones", -2 * comision, "0", "0"))
         return Estrategia("Cash and carry inverso: el forward está barato", True, "pura", g * B, g, desv, pp,
-                          "Vendes en corto, inviertes y fijas hoy el precio de recompra.")
+                          "Vendes en corto, inviertes y fijas hoy el precio de recompra que queda "
+                          "cubierto con lo resultante de la inversión.")
     return Estrategia("El forward está en línea", False, desviacion=desv,
                       nota=f"Sin arbitraje mientras {F_venta - costo:,.4f} ≤ F ≤ {F_compra + costo:,.4f}, una vez incluidos costos.")
 
