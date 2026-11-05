@@ -82,8 +82,7 @@ paginas = {
     "Calculadoras": [st.Page(opciones.pagina, title="Opciones", url_path="opciones"),
                      st.Page(exoticos.pagina, title="Exóticos", url_path="exoticos"),
                      st.Page(constructor.pagina, title="Constructor", url_path="constructor")],
-    "Complementos": [st.Page(griegas.pagina, title="Griegas", url_path="griegas"),
-                     st.Page(estrategias.pagina, title="Estrategias y riesgo", url_path="estrategias")],
+    "Complementos": [st.Page(estrategias.pagina, title="Estrategias y riesgo", url_path="estrategias")],
 }
 actual = st.navigation(paginas, position="top")
 if st.session_state.get("_pagina") != actual.url_path:
