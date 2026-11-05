@@ -1,12 +1,12 @@
 # Derivados en tiempo discreto
 
-Calculadora web para valuar derivados, replicarlos y detectar oportunidades de arbitraje. Todo funciona capturando datos, sin escribir código.
+Calculadora web para valuar derivados, replicarlos y detectar oportunidades de arbitraje.
 
 **[Abrir la aplicación](https://unampfdproyecto1-ssywkldwci2appvclvj596t.streamlit.app)**
 
 ## Idea central
 
-El precio de un derivado es el costo de replicarlo. Si dos portafolios valen lo mismo al vencimiento en todo escenario, deben valer lo mismo hoy. Si no, existe arbitraje.
+El precio de un derivado es el costo de su cobertura (estrategia que lo replica). Si dos portafolios valen lo mismo al vencimiento en todo escenario, deben valer lo mismo hoy. Si no, existe una oportunidad de arbitraje.
 
 ## Qué incluye
 
