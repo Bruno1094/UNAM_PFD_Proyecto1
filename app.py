@@ -6,7 +6,7 @@ from streamlit import config as _config
 
 from motor.base import Mercado
 from paginas import (americanas, arboles, arbitraje, black_scholes, conceptos, constructor, estrategias, exoticos, forwards,
-                     griegas, inicio, martingalas, opciones)
+                     griegas, inicio, martingalas, opciones, cadenas)
 from paginas.comun import CSS, asentar_tablas, num, sel, tabla_editable
 
 # La paleta solo está pensada para fondo claro, aunque se pierda la carpeta .streamlit al subir el proyecto.
